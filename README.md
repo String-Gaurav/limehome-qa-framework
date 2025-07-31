@@ -35,6 +35,7 @@ npx playwright show-report
 - ✅ Response time testing - Performance checks
 - ✅ HTTP headers validation - Content types
 - ✅ Search parameters - Different URL params
+- ✅ Search parameters - Filter Validations
 
 ## Structure
 
