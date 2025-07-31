@@ -45,7 +45,6 @@ npx playwright show-report
 │   └── api/property-api.spec.ts          # Website API tests
 ├── pages/booking-page.ts                 # Page Object Model
 ├── config/test-data.ts                   # Test data & configuration
-├── utils/                                # Test utilities
 └── docs/                                 # Documentation
 ```
 
@@ -63,10 +62,9 @@ npx playwright test --ui                  # Interactive mode
 - **HTML Report**: Auto-opens after test run
 - **Screenshots**: Captured on failures
 - **Videos**: Recorded for failed tests
-- **Performance**: DataDog integration
 
 ## Test Data
-All test data centralized in `config/test-data.ts`:
+All test data centralised in `config/test-data.ts`:
 - Default search: Aachen, Aug 13-15, 2 guests
 - User details: Test user with valid info
 - Configurable URLs and endpoints
