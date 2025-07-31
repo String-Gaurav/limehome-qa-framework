@@ -1,0 +1,33 @@
+{
+  "name": "limehome-qa-challenge",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "playwright test",
+    "test:api": "playwright test tests/api",
+    "test:frontend": "playwright test tests/frontend",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:ui": "playwright test --ui",
+    "test:ci": "playwright test --reporter=line",
+    "report": "playwright show-report",
+    "install-browsers": "playwright install",
+    "lint": "eslint src/ tests/ --ext .ts",
+    "lint:fix": "eslint src/ tests/ --ext .ts --fix",
+    "type-check": "tsc --noEmit",
+    "build": "tsc",
+    "clean": "rm -rf dist/ test-results/ playwright-report/",
+    "docker:build": "docker build -t limehome-qa .",
+    "docker:run": "docker run --rm limehome-qa"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.1",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
+}
