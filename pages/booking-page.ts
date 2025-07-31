@@ -48,7 +48,9 @@ async clickSearch() {
   }
 
   async selectUnitAndAddToCart(newPage: Page) {
-    await newPage.locator("#qa_unit-0-book-now").click();
+  const bookNowBtn = newPage.locator('#qa_unit-0-book-now');
+  await bookNowBtn.waitFor({ state: 'visible', timeout: 15000 });
+  await bookNowBtn.click({ timeout: 5000, force: true });
     await newPage.getByRole('button', { name: " Add & review " }).click();
   }
 

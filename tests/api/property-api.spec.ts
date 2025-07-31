@@ -55,7 +55,7 @@ test.describe('Limehome Public Property API Tests', () => {
 
     const { payload } = await response.json();
 
-    // Validate top-level property metadata
+    //  Validate top-level property metadata
     expect(payload.id).toBe(129);
     expect(payload.external_id).toBe('VER2');
     expect(payload.name.toLowerCase()).toContain('vereinsstraße');
