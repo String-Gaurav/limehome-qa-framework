@@ -21,6 +21,7 @@
 4. **Response Time Testing** (P1) - Performance checks
 5. **HTTP Headers Validation** (P2) - Content types
 6. **Search Parameters** (P2) - Different URL parameters
+7. Search parameters - Filter Validations
 
 ## Implementation
 - **Test Data**: Centralized in `config/test-data.ts`
