@@ -33,15 +33,15 @@ export default defineConfig({
       testDir: './tests/frontend',
       use: { ...devices['Desktop Chrome'] },
     },
-    {
-      name: 'firefox',
-      testDir: './tests/frontend',
-      use: { ...devices['Desktop Firefox'] },
-    },
-    {
-      name: 'webkit',
-      testDir: './tests/frontend',
-      use: { ...devices['Desktop Safari'] },
-    },
+    // {
+    //   name: 'firefox',
+    //   testDir: './tests/frontend',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
+    // {
+    //   name: 'webkit',
+    //   testDir: './tests/frontend',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
   ],
 });

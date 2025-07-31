@@ -54,8 +54,8 @@ async clickSearch() {
 
   async closeModalAndProceedToReserve(newPage: Page) {
     await Promise.all([
-      newPage.locator("[class='lm-modal__close']").waitFor({ state: 'visible' }),
-      newPage.locator("[class='lm-modal__close']").click()
+      newPage.locator("svg[height='1em']").waitFor({ state: 'visible' }),
+      newPage.locator("svg[height='1em']").click()
     ]);
     
     await newPage.getByTestId('qa-goto-checkout-button').waitFor({ state: 'visible' });

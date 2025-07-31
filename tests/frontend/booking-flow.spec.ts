@@ -8,15 +8,14 @@ test.describe('Limehome Search and Shopping Flow Tests', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(testData.urls.property);
     await page.waitForLoadState('networkidle');
-    
-    // Handle cookies the working way
+
     try {
       await page.getByText('Accept All').click({ timeout: 5000 });
       await page.waitForTimeout(1000);
     } catch (error) {
       console.log('No cookie consent modal or already handled');
     }
-    
+
     bookingPage = new BookingPage(page);
   });
 
@@ -26,49 +25,44 @@ test.describe('Limehome Search and Shopping Flow Tests', () => {
   });
 
   test('Search different cities', async ({ page }) => {
-  await bookingPage.selectCity('berlin');
-  await bookingPage.selectDates('20', '22');
-  
-  await expect(page.locator('h1:has-text("Limehomes in berlin")')).toBeVisible();
-});
+    await bookingPage.selectCity('berlin');
+    await bookingPage.selectDates('20', '22');
+    await expect(page.locator('h1:has-text("Limehomes in berlin")')).toBeVisible();
+  });
 
   test('Add to cart functionality', async ({ page, context }) => {
-    await bookingPage.selectCity(); // Uses default from testData
-    await bookingPage.selectDates(); // Uses default from testData
+    await bookingPage.selectCity();
+    await bookingPage.selectDates();
     await bookingPage.incrementGuests();
     await bookingPage.clickSearch();
-    
+
     const newPage = await bookingPage.openNewTabFromExplore(context);
     await bookingPage.selectUnitAndAddToCart(newPage);
-    
     await expect(newPage.getByTestId('qa-cart-details-modal')).toBeVisible({ timeout: 10000 });
   });
 
   test('Navigate to checkout form', async ({ page, context }) => {
-    await bookingPage.selectCity(); // Uses default from testData
-    await bookingPage.selectDates(); // Uses default from testData
+    await bookingPage.selectCity();
+    await bookingPage.selectDates();
     await bookingPage.incrementGuests();
     await bookingPage.clickSearch();
 
     const newPage = await bookingPage.openNewTabFromExplore(context);
     await bookingPage.selectUnitAndAddToCart(newPage);
     await bookingPage.closeModalAndProceedToReserve(newPage);
-    
+
     await expect(newPage.getByRole('textbox', { name: 'First name *' })).toBeVisible();
   });
 
   test('Date selection with different ranges', async ({ page }) => {
-    await bookingPage.selectCity(); // Uses default from testData
-    
-    // Test default dates
-    await bookingPage.selectDates(); // Uses default from testData
+    await bookingPage.selectCity();
+
+    await bookingPage.selectDates();
     await expect(page.locator('#qa_open-datepicker-overlay')).toBeVisible();
-    
-    // Test alternative dates
+
     await bookingPage.selectDates(testData.search.alternativeDates.startDate, testData.search.alternativeDates.endDate);
     await expect(page.locator('#qa_open-datepicker-overlay')).toBeVisible();
-    
-    // Test extended stay
+
     await bookingPage.selectDates(testData.search.extendedStay.startDate, testData.search.extendedStay.endDate);
     await expect(page.locator('#qa_open-datepicker-overlay')).toBeVisible();
   });
