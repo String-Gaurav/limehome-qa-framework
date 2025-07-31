@@ -1,14 +1,22 @@
 // config/test-data.ts
 const testData = {
   urls: {
-    property: 'https://www.limehome.com/suites?property=129&guests=1&rooms=1',
-    api: 'https://www.limehome.com/api/properties/129'
+    property: 'https://www.limehome.com/suites?property=129&guests=1&rooms=1'
   },
   
   search: {
     city: 'aachen',
     startDate: '13',
-    endDate: '15'
+    endDate: '15',
+    cities: ['berlin', 'munich', 'hamburg'], // Multiple cities for testing
+    alternativeDates: {
+      startDate: '20',
+      endDate: '22'
+    },
+    extendedStay: {
+      startDate: '10',
+      endDate: '17'
+    }
   },
   
   guest: {

@@ -1,5 +1,5 @@
 import { Page, expect, BrowserContext } from '@playwright/test';
-import testData from '../config/test-data';  // Default import
+import testData from '../config/test-data';
 
 export class BookingPage {
   constructor(private page: Page) {}
@@ -21,9 +21,21 @@ export class BookingPage {
     await this.page.locator('#qa_increment-guests-mobile').nth(0).click();
   }
 
-  async clickSearch() {
-    await this.page.getByRole('button', { name: 'Search' }).click();
+async clickSearch() {
+  // Check if we're already on results page
+  const isOnResultsPage = await this.page.locator('h1:has-text("Limehomes in")').isVisible({ timeout: 2000 });
+  
+  if (isOnResultsPage) {
+    console.log('Already on results page, no need to click search');
+    return;
   }
+  
+  // Only click search if we're still on search form
+  const searchButton = this.page.getByRole('button', { name: 'Search' });
+  if (await searchButton.isVisible({ timeout: 3000 })) {
+    await searchButton.click();
+  }
+}
 
   async openNewTabFromExplore(context: BrowserContext) {
     const [newPage] = await Promise.all([
